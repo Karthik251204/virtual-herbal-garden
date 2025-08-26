@@ -26,6 +26,7 @@ It is designed as an educational and research-friendly platform, especially focu
 ---
 
 ## 📂 Project Structure
+'''
 virtual-herbal-garden/
 │── index.html
 │── about.html
@@ -47,4 +48,4 @@ virtual-herbal-garden/
 │ ├── logo.png
 │ └── plants/
 │
-└── README.md
+└── README.md'''
