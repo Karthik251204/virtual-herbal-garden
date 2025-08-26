@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Virtual Herbal Garden</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-image: url('https://images.unsplash.com/photo-1504541891213-1b1dfdadb739?w=600');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      height: 100vh;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 250px;
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 20px;
+      height: 100vh;
+      position: fixed;
+      left: 0;
+      top: 0;
+      box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .logo {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .nav-link {
+      text-decoration: none;
+      color: #2c3e50;
+      font-weight: 500;
+      padding: 10px 15px;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    .nav-link:hover {
+      background-color: #dfe6e9;
+    }
+
+    .content {
+  margin-left: 250px;
+  margin-top: 60px; /* offset the header height */
+  padding: 40px;
+  flex: 1;
+  overflow-y: auto;
+  color: black;
+}
+
+
+    h1 {
+      font-size: 32px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .plant-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 30px;
+      width: 100%;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .plant-card {
+      perspective: 1000px;
+    }
+
+    .card-inner {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      transition: transform 0.8s;
+      transform-style: preserve-3d;
+    }
+
+    .plant-card:hover .card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .card-front, .card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      background-color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .card-front img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    .card-front p {
+      margin-top: 12px;
+      font-weight: 600;
+      font-size: 16px;
+      color: #2c3e50;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      background-color: #f0f8f5;
+    }
+
+    .card-back h4 {
+      margin-bottom: 8px;
+      font-size: 18px;
+      color: #2c3e50;
+    }
+
+    .card-back p {
+      font-size: 14px;
+      margin: 2px 0;
+      color: #333;
+    }
+    .header {
+  position: fixed;
+  top: 0;
+  left: 250px; /* accounts for sidebar */
+  width: calc(100% - 250px);
+  height: 60px;
+  background-color: rgba(255, 255, 255, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 30px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  z-index: 1001; /* Make sure it’s above content */
+}
+
+.header-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2c3e50;
+  text-align: centre;
+}
+
+.header-buttons {
+  display: flex;
+  gap: 15px;
+}
+
+.header-btn {
+  background-color: #2ecc71;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.header-btn:hover {
+  background-color: #27ae60;
+}
+
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <h2 class="logo">🌿 Herbal Garden</h2>
+    <nav class="nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="about.html" class="nav-link">About</a>
+      <a href="explore.html" class="nav-link">Explore</a>
+      <a href="plants.html" class="nav-link">Plant Library</a>
+      
+    </nav>
+  </aside>
+  <header class="header">
+  <div class="header-content">
+    <h2 class="page-title">Welcome to the Virtual Herbal Garden</h2>
+    <div class="header-buttons">
+      <button class="header-btn logout-btn" onclick="logout()">Logout</button>
+    </div>
+  </div>
+</header>
+
+  <main class="content">
+    <p>Explore some of the most important medicinal plants</p>
+
+    <div class="plant-grid">
+      <!-- Aloe Vera -->
+      <div class="plant-card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://media.istockphoto.com/id/1345935119/photo/aloe-or-aloe-vera-fresh-leaves-and-slices-on-white-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=ucg-VNWWuoa4_J4RZdx0P0DizS3MzsXFryHU9dgj_ss=" alt="Aloe Vera">
+            <p>Aloe Vera</p>
+          </div>
+          <div class="card-back">
+            <h4>Aloe Vera</h4>
+            <p><strong>Uses:</strong> Skin treatment, burns, digestion</p>
+            <p><strong>Species:</strong> Aloe barbadensis</p>
+            <p><strong>Origin:</strong> Arabian Peninsula</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tulsi -->
+      <div class="plant-card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://media.istockphoto.com/id/1245095474/photo/holy-basil-or-tulsi-leaves.webp?a=1&b=1&s=612x612&w=0&k=20&c=2k0EMpTqL01hYxFGEUYinAxRlbC4DNH0jbOAil_hoig=" alt="Tulsi">
+            <p>Tulsi</p>
+          </div>
+          <div class="card-back">
+            <h4>Tulsi</h4>
+            <p><strong>Uses:</strong> Immunity, cold, stress</p>
+            <p><strong>Species:</strong> Ocimum sanctum</p>
+            <p><strong>Origin:</strong> India</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Neem -->
+      <div class="plant-card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://images.unsplash.com/photo-1687945906634-25c66199d941" alt="Neem">
+            <p>Neem</p>
+          </div>
+          <div class="card-back">
+            <h4>Neem</h4>
+            <p><strong>Uses:</strong> Antiseptic, skin care, immunity</p>
+            <p><strong>Species:</strong> Azadirachta indica</p>
+            <p><strong>Origin:</strong> Indian subcontinent</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ashwagandha -->
+      <div class="plant-card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://media.istockphoto.com/id/2150098782/photo/withania-somnifera-dried-root-green-leaves-herbal-plants-withania-somnifera-isolated-on-white.webp?a=1&b=1&s=612x612&w=0&k=20&c=NVk06iI6RwBrdGZRjAbrwWhaQtKwiNcUkRcNmA3pIE8=" alt="Ashwagandha">
+            <p>Ashwagandha</p>
+          </div>
+          <div class="card-back">
+            <h4>Ashwagandha</h4>
+            <p><strong>Uses:</strong> Stress relief, stamina, sleep</p>
+            <p><strong>Species:</strong> Withania somnifera</p>
+            <p><strong>Origin:</strong> India, Middle East</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Turmeric -->
+      <div class="plant-card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://media.istockphoto.com/id/509309660/photo/fresh-and-dried-turmeric-isolated-on-white.webp?a=1&b=1&s=612x612&w=0&k=20&c=-9fyJTXMpWmwhsG_gMBuJVWsdyRZ0kqX0dtiV_wJjOo=" alt="Turmeric">
+            <p>Turmeric</p>
+          </div>
+          <div class="card-back">
+            <h4>Turmeric</h4>
+            <p><strong>Uses:</strong> Anti-inflammatory, digestion, immunity</p>
+            <p><strong>Species:</strong> Curcuma longa</p>
+            <p><strong>Origin:</strong> Southeast Asia</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lavender -->
+      <div class="plant-card">
+        <div class="card-inner">
+          <div class="card-front">
+            <img src="https://plus.unsplash.com/premium_photo-1673728254015-9a437bdb44aa?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bGF2ZW5kZXJ8ZW58MHx8MHx8fDA%3D" alt="Lavender">
+            <p>Lavender</p>
+          </div>
+          <div class="card-back">
+            <h4>Lavender</h4>
+            <p><strong>Uses:</strong> Relaxation, anxiety, sleep</p>
+            <p><strong>Species:</strong> Lavandula</p>
+            <p><strong>Origin:</strong> Mediterranean</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script type="module" src="firebaseConfig.js"></script>
+<script type="module" src="plants.js"></script>
+<script>
+  function logout() {
+    window.location.href = "login.html";
+  }
+</script>
+
+</body>
+</html>
