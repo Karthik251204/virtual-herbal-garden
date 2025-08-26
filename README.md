@@ -26,3 +26,25 @@ It is designed as an educational and research-friendly platform, especially focu
 ---
 
 ## 📂 Project Structure
+virtual-herbal-garden/
+│── index.html
+│── about.html
+│── explore.html
+│── plants.html
+│── profile.html
+│── signup.html
+│── login.html
+│
+├── css/
+│ ├── style.css
+│ └── responsive.css
+│
+├── js/
+│ ├── main.js
+│ └── firebase.js
+│
+├── images/
+│ ├── logo.png
+│ └── plants/
+│
+└── README.md
