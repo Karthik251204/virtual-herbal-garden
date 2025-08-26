@@ -46,3 +46,18 @@ virtual-herbal-garden/
 │── plants/
 │── README.md
 ```
+## 📸 Screenshots
+
+###Home Page
+<img width="1874" height="857" alt="image" src="https://github.com/user-attachments/assets/ff58baba-ee08-4978-a613-1b70a8b3c905" />
+###Explore page
+<img width="1898" height="860" alt="image" src="https://github.com/user-attachments/assets/a49d0f15-1df5-4d18-8405-c8504280dfe9" />
+###Plants Library
+<img width="1893" height="854" alt="image" src="https://github.com/user-attachments/assets/ed92f416-135a-4f6d-ae6e-3758c1ea6fe2" />
+###Signup Page
+<img width="1910" height="864" alt="image" src="https://github.com/user-attachments/assets/d721c148-cec1-4a96-ae3c-6865d458dd14" />
+
+
+
+
+    
